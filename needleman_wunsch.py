@@ -13,7 +13,7 @@ class NeedlemanWunsch():
         # keys are all the characters that will appear in the sequences
         self.scores = scores
         self.keys = keys
-        self.delta = None
+        self.delta = delta
 
     def delta_score(self):
         delta = {}

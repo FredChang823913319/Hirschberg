@@ -1,6 +1,6 @@
 import os
 import time
-from hirschberg import Hirschberg
+from needleman_wunsch import NeedlemanWunsch
 
 def read_delta(path):
     delta = {}
@@ -59,7 +59,7 @@ def main(args):
             print("Symbols will be used by the sequences are missing!")
             exit(0)
 
-    hs = Hirschberg(score, keys, delta)
+    hs = NeedlemanWunsch(score, keys, delta)
     start_time = time.time()
     score, alignments = hs.align(alignment1, alignment2)
     end_time = time.time()
@@ -83,7 +83,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--path', type=str, default=None, help='writing directory for the output alignment; '
                                                                'if want output in terminal, leave this blank')
-    parser.add_argument('--file_name', type=str, default='hirschberg_output.txt', help='file to write final output')
+    parser.add_argument('--file_name', type=str, default='needleman_wunsch_output.txt', help='file to write final output')
     parser.add_argument('--keys', type=str, default=None, help='symbols in the sequences')
     parser.add_argument('--alignment1', type=str, default=None, help='first sequence for alignment;'
                                                                      'can be either an alignment or '
