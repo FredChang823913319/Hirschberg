@@ -13,7 +13,7 @@ In order to run the Hirschberg algorithm on custom input sequences, you would do
 python run_hirschberg.py --path output_dir --file_name hirschberg_output.txt --delta score_matrix.txt 
 --keys A,C,T,G,- --alignment1 sequence1.txt --alignment2 sequence2.txt --match 1 --mismatch -1 --gap -1
 ```
-The arguments meaning are the following:
+Where
 
 **path:** This will be the output directory where the program store alignment score and corresponding alignments.
 This arguments will be expected as a directory with "/" at the end. If no directory is specified, the program will
