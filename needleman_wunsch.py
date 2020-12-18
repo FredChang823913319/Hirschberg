@@ -8,11 +8,12 @@ ORIGIN = (0, 0)
 
 
 class NeedlemanWunsch():
-    def __init__(self, scores: Dict, keys: List):
+    def __init__(self, scores: Dict = None, keys: List = None, delta: Dict = None):
         # score is a dictionary that record scores for match, mismatch, gap penalty
         # keys are all the characters that will appear in the sequences
         self.scores = scores
         self.keys = keys
+        self.delta = None
 
     def delta_score(self):
         delta = {}
@@ -55,7 +56,10 @@ class NeedlemanWunsch():
         return ''.join(new_v[::-1]), ''.join(new_w[::-1])
 
     def align(self, v: str, w: str):
-        delta = self.delta_score()
+        if self.delta == None:
+            delta = self.delta_score()
+        else:
+            delta = self.delta
         M = [[0 for j in range(len(w) + 1)] for i in range(len(v) + 1)]
         pointers = [[ORIGIN for j in range(len(w) + 1)] for i in range(len(v) + 1)]
         for i in range(len(v) + 1):

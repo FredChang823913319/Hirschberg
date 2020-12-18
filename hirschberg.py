@@ -7,11 +7,12 @@ TOPLEFT = (-1, -1)
 ORIGIN = (0, 0)
 
 class Hirschberg():
-    def __init__(self, scores: Dict, keys: List):
+    def __init__(self, scores: Dict = None, keys: List = None, delta: Dict = None):
         # score is a dictionary that record scores for match, mismatch, gap penalty
         # keys are all the characters that will appear in the sequences
         self.scores = scores
         self.keys = keys
+        self.delta = delta
 
     def delta_score(self):
         delta = {}
@@ -141,7 +142,10 @@ class Hirschberg():
             return score, alignment_v, alignment_w
 
     def align(self, v, w):
-        delta = self.delta_score()
+        if self.delta is None:
+            delta = self.delta_score()
+        else:
+            delta = self.delta
         score, alignment_v, alignment_w = self.hirschberg(v, w, delta)
         return score, (alignment_v, alignment_w)
 
