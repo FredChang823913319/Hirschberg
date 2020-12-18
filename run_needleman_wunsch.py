@@ -1,5 +1,6 @@
 import os
 import time
+import tracemalloc
 from needleman_wunsch import NeedlemanWunsch
 
 def read_delta(path):
@@ -60,9 +61,13 @@ def main(args):
             exit(0)
 
     hs = NeedlemanWunsch(score, keys, delta)
+    tracemalloc.start()
     start_time = time.time()
     score, alignments = hs.align(alignment1, alignment2)
+    current, peak = tracemalloc.get_traced_memory()
     end_time = time.time()
+    print(f"Current memory usage is {current / 10 ** 6}MB; Peak was {peak / 10 ** 6}MB")
+    tracemalloc.stop()
     elapsed_time = end_time - start_time
     if path is None:
         print("Best Alignment Score:", score)
