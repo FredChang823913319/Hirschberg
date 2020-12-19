@@ -56,6 +56,8 @@ def main(args):
                      'gap': args.gap}
         if args.keys is not None:
             keys = args.keys.split(',')
+            if '-' not in keys:
+                keys.append('-')
         else:
             print("Symbols will be used by the sequences are missing!")
             exit(0)
